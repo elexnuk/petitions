@@ -1,0 +1,64 @@
+.labour {
+  background-color: #CC0000; /*Alternative: #DC241f*/
+  color: white;
+}
+
+.conservative {
+  background-color: #0087DC;
+  color: white;
+}
+
+.snp {
+  background-color: #FDF38E;
+  color: black;  
+}
+
+.liberaldemocrat, .libdem {
+  background-color: #FAA61A;
+  color: black;  
+}
+
+.independent {
+  background-color: #DDDDDD;
+  color: black;
+}
+
+.tig {
+  background-color: white;
+  color: black;  
+}
+
+.dup {
+  background-color: darkred;
+  color: white;  
+}
+
+.greenparty {
+  background-color: #6AB023;
+  color: black;  
+}
+
+.plaidcymru {
+  background-color: #008142;
+  color: white;  
+}
+
+.sinnféin {
+  background-color: #326760;
+  color: white;  
+}
+
+.alliance {
+  background-color: #F6CB2F;
+  color: black;
+}
+
+.sdlp {
+  background-color: #2AA82C;
+  color: white;
+}
+
+.speaker {
+  background-color: black;
+  color: white;
+}
