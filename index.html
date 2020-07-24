@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>UK Petition Data Viewer</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700&display=swap" rel="stylesheet"> 
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="politicalParties.css">
+  </head>  
+  <body>
+    <form id="jsonForm">
+      <label for="petitionJSON">Petition JSON:</label>
+      <input name="petitionJSON" id="petitionJSON">
+
+      <input type="submit" value="Submit"> <br>
+    </form>
+
+
+    <form id="searchForm" autocomplete="off">
+      <label for="searchTerm">Search:</label>
+      <input name="searchTerm" id="searchTerm">
+      <br>
+      <label for="searchState">Type: </label>
+      <select id="searchState">
+        <option value="all">All</option>
+        <option value="open">Open</option>
+        <option value="closed">Closed</option>
+        <option value="rejected">Rejected</option>
+        <option value="awaiting_debate">Awaiting Debate</option>
+        <option value="awaiting_response">Awaiting Response</option>
+        <option value="debated">Debated</option>
+        <option value="with_response">With Response</option>
+        <option value="not_debated">Not Debated</option>
+      </select>
+      <br>
+      <label for="searchParliament">Parliament:</label>
+      <select id="searchParliament">
+        <option value="null">2019-</option>
+        <option value="3">2017-2019</option>
+        <option value="1">2015-2017</option>
+        <option value="2">2010-2015</option>
+      </select>
+      <br>
+      <input type="submit" value="Search">
+    </form>
+
+    <ol id="searchResults">
+      <span class="resultHeader">Search Results</span>
+    </ol>
+
+    <table id="summaryTable">
+        <tr id="headerTable">
+          <td><h3>Global Signatures (incl UK)</h3></td>
+          <td><h3>UK Signatures</h3></td> 
+          <td><h3>Percent of UK signatures</h3></td>
+          
+        </tr>
+      <tr id="tableBody">
+        <td id="totalSignatures"></td>
+        <td id="ukSignatures"></td>
+        <td id="percentSignatures"></td>
+        
+      </tr>
+    </table>
+    
+    <div id="overviewDiv">
+      
+    </div>
+    
+    <table id="regionsTable">
+      <tr>
+        <th>North East (A)</th>
+        <th>North West (B)</th>
+        <th>Yorkshire and the Humber (D)</th>
+        <th>East Midlands (E)</th>
+        <th>West Midlands (F)</th>
+        <th>East of England (G)</th>
+        <th>London (H)</th>
+        <th>South East (J)</th>
+        <th>South West (K)</th>
+        <th>Wales (L)</th>
+        <th>Scotland (M)</th>
+        <th>Northern Ireland (N)</th>
+      </tr>
+      <tr id="topRegions">
+        
+      </tr>
+    </table>
+    
+    <table id="topCountries">
+      <tr>
+        <th>#</th> <th>Country</th> <th>Signatures <button>⇵</button></th>
+      </tr>
+
+    </table>
+
+    <table id="topConstituencies">
+      <tr>
+        <th>#</th> <th>Constituency <button>⇵</button></th> <th>MP Name</th> <th>Signatures <button>⇵</button></th> <th>Percent <button>⇵</button></th> <th>Party</th>
+      </tr>
+
+    </table>
+    
+    <!-- Scripts -->
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="Request.js" defer></script>
+    <script src="Util.js" defer></script>
+    <script src="Petition.js"></script>
+    <script src="SearchForm.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async e => {
+        var currentPetition;
+        let searchForm = new SearchForm();
+        
+        try {
+          window.constituencyData = await Request.get("https://petition.parliament.uk/constituencies.json").execute();
+          window.onsData = await Request.get("https://petitionmap.unboxedconsulting.com/json/mps/population_ons.json").execute();
+        
+          let url = window.localStorage.getItem("json") || "https://petition.parliament.uk/petitions/241584.json";
+          currentPetition = Petition.switchPetition(url);
+          
+        } catch (err) {
+          console.log(err);
+          alert("Network Error Loading Resources");
+        }
+        
+        document.getElementById("searchForm").addEventListener("submit", e => {searchForm.search(e)});
+        document.getElementById("jsonForm").addEventListener("submit", e => {
+          e.preventDefault();
+          try {
+            let url = document.getElementById("petitionJSON").value;
+        
+            currenPetition = Petition.switchPetition(url)
+          } catch (err) {
+            console.log(err);
+            alert("Error finding petition data");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
