@@ -60,7 +60,10 @@ window.Util = class Util {
 
       case "Social Democratic & Labour Party":
         return "SDLP";
-
+        
+      case "Alba Party":
+        return "Alba";
+        
       default:
         return party;
     }
