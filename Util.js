@@ -70,6 +70,6 @@ window.Util = class Util {
   }
 
   static getClassName(party) {
-    return Util.shortenPartyName(party).replace(/ /g, "").toLowerCase();
+    return String(Util.shortenPartyName(party)).replace(/ /g, "").toLowerCase();
   }
 }
