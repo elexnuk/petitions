@@ -41,7 +41,8 @@
       <br>
       <label for="searchParliament">Parliament:</label>
       <select id="searchParliament">
-        <option value="null">2019-</option>
+        <option value="null">2024-</option>
+        <option value="4">2019-2024</option>
         <option value="3">2017-2019</option>
         <option value="1">2015-2017</option>
         <option value="2">2010-2015</option>
@@ -121,7 +122,7 @@
         
         try {
           window.constituencyData = await Request.get("https://petition.parliament.uk/constituencies.json").execute();
-          window.onsData = await Request.get("https://petitionmap.unboxedconsulting.com/json/mps/population_ons.json").execute();
+          window.onsData = await Request.get("https://petitionmap.unboxedconsulting.com/json/mps/current/population_ons.json").execute();
         
           let url = window.localStorage.getItem("json") || "https://petition.parliament.uk/petitions/241584.json";
           currentPetition = Petition.switchPetition(url);

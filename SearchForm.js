@@ -53,7 +53,7 @@ class SearchForm {
     try {
       
       let petitionList = await Request.get(this.url).execute();
-      
+      this.searchResults.innerHTML = "";
       let resultHeaderEl = document.createElement("span");
       resultHeaderEl.classList.add("resultHeader");
       resultHeaderEl.appendChild(document.createTextNode(`${petitionList.data.length} Results`));
