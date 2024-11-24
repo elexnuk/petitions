@@ -124,7 +124,7 @@
           window.constituencyData = await Request.get("https://petition.parliament.uk/constituencies.json").execute();
           window.onsData = await Request.get("https://petitionmap.unboxedconsulting.com/json/mps/current/population_ons.json").execute();
         
-          let url = window.localStorage.getItem("json") || "https://petition.parliament.uk/petitions/241584.json";
+          let url = window.localStorage.getItem("json") || "https://petition.parliament.uk/petitions/700143.json";
           currentPetition = Petition.switchPetition(url);
           
         } catch (err) {

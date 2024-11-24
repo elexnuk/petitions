@@ -63,6 +63,21 @@ window.Util = class Util {
         
       case "Alba Party":
         return "Alba";
+
+      case "Ulster Unionist Party":
+        return "UUP";
+
+      case "Traditional Unionist Voice":
+        return "TUV";
+
+      case "Independent":
+        return "Ind";
+
+      case "Reform UK":
+        return "Reform";
+
+      case "Green Party":
+        return "Green";
         
       default:
         return party;

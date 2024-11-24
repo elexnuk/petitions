@@ -301,7 +301,7 @@ window.Petition = class Petition {
         bodyElement.appendChild(document.createTextNode(" "));
         
         abbr = document.createElement("abbr");
-        abbr.setAttribute("title", "Percent of votes from party constituencies");
+        abbr.setAttribute("title", "Percent of signatures from party constituencies");
         abbr.appendChild(document.createTextNode(`(${Math.floor(party / ukSignatures * 100000) / 1000}%)`))
         bodyElement.appendChild(abbr);
         
